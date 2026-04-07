@@ -2,15 +2,7 @@ FROM n8nio/n8n:latest
 
 USER root
 
-# Create directory and set permissions for railway
-RUN mkdir -p /home/node/.n8n && \
-    chown -R node:node /home/node && \
-    chmod -R 755 /home/node
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-USER node
-
-WORKDIR /home/node
-
-EXPOSE 5678
-
-ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
