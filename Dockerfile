@@ -13,4 +13,4 @@ WORKDIR /home/node
 
 EXPOSE 5678
 
-CMD ["n8n", "start"]
+ENTRYPOINT ["tini", "--", "/docker-entrypoint.sh"]
